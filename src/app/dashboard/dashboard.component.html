@@ -1,0 +1,34 @@
+<div class="container">
+  <nav>
+    <app-search-character></app-search-character>
+    <app-search-episode></app-search-episode>
+  </nav>
+  
+    <h2>Characters of Rick and Morty</h2>
+    
+    <div class="character-list">
+      <div *ngFor="let character of characters" class="character-item">
+        <img (click)="showCharacterDetails(character)" [src]="character.image" alt="{{ character.name }}" />
+        <h3 (click)="showCharacterDetails(character)">{{ character.name }}</h3>
+      </div>
+    </div>
+  
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  
+    <div *ngIf="selectedCharacter" class="popup">
+      <div class="popup-content">
+        <span class="close" (click)="closePopup()">X</span>
+        <h2>{{ selectedCharacter.name }}</h2>
+        <img [src]="selectedCharacter.image" alt="{{ selectedCharacter.name }}" />
+        <p><strong>Status:</strong> {{ selectedCharacter.status }}</p>
+        <p><strong>Specie:</strong> {{ selectedCharacter.species }}</p>
+        <p><strong>Type:</strong> {{ selectedCharacter.gender }}</p>
+        <p><strong>Origin:</strong> {{ selectedCharacter.origin.name }}</p>
+      </div>
+    </div>
+  </div>
+  

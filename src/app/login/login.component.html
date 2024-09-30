@@ -1,0 +1,35 @@
+<div class="login-container">
+    <h2 class="title">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email">Email*</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <small>Email is required and must be valid</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Password*</label>
+        <input id="password" formControlName="password" type="password" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small>Password is required</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="mfa">Code MFA*</label>
+        <input id="mfa" formControlName="mfa" type="text" maxlength="6" />
+        <div *ngIf="loginForm.get('mfa')?.invalid && loginForm.get('mfa')?.touched">
+          <small>MFA code is required and must have 6 digits</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      
+    </form>
+    <div *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,17 @@
+<div>
+  <input [(ngModel)]="searchId" placeholder="Search Episode" />
+  <button (click)="searchEpisode()">Search</button>
+</div>
+
+<div *ngIf="searchedEpisode">
+
+  <span class="close" (click)="closePopup()">X</span>
+  <h2>{{ searchedEpisode.name }}</h2>
+  <p>Air Date: {{ searchedEpisode.air_date }}</p>
+  <p>Episode: {{ searchedEpisode.episode }}</p>
+  <p>Characters: {{ searchedEpisode.characters }}</p>
+</div>
+
+<div *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</div>

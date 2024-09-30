@@ -1,0 +1,18 @@
+<div>
+  <input [(ngModel)]="searchTerm" placeholder="Search Character" required/>
+  <button (click)="searchCharacter()">Search</button>
+</div>
+
+<div *ngIf="searchedCharacter">
+  
+  <span class="close" (click)="closePopup()">X</span>
+  <h2>{{ searchedCharacter.name }}</h2>
+  <img [src]="searchedCharacter.image" alt="{{ searchedCharacter.name }}" />
+  <p>Status: {{ searchedCharacter.status }}</p>
+  <p>Species: {{ searchedCharacter.species }}</p>
+  <p>Gender: {{ searchedCharacter.gender }}</p>
+</div>
+
+<div *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</div>

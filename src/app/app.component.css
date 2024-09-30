@@ -1,0 +1,9 @@
+.searched-character {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .searched-character img {
+    max-width: 200px;
+    border-radius: 10px;
+  }
