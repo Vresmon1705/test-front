@@ -4,11 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SearchCharacterComponent } from '../search-character/search-character.component';
 import { SearchEpisodeComponent } from '../search-episode/search-episode.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [    
+  imports: [
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
@@ -25,7 +26,10 @@ export class DashboardComponent implements OnInit {
   totalPages: number = 0;
   selectedCharacter: any = null;
 
-  constructor(private rickAndMortyService: RickAndMortyService) { }
+  constructor(
+    private rickAndMortyService: RickAndMortyService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadCharacters(this.currentPage);
@@ -58,6 +62,11 @@ export class DashboardComponent implements OnInit {
 
   closePopup(): void {
     this.selectedCharacter = null;
+  }
+
+  logout() {
+    this.router.navigate(['/login']);
+    console.log("Sesión cerrada");
   }
 
 }

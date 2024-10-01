@@ -22,8 +22,6 @@ export class RickAndMortyService {
     return this.http.get(`${this.apiUrl}/episode/${id}`);    
   }
 
-  //
-
   getCharacterByUrl(url: string): Observable<any> {
     return this.http.get(url);
   }
