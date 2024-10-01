@@ -20,17 +20,21 @@ export class SearchEpisodeComponent {
   searchId!: number;
   searchedEpisode: any = null;
   errorMessage: string = '';
+  characters: any[] = [];  
+  selectedCharacter: any = null;
 
   constructor(private rickAndMortyService: RickAndMortyService) { }
 
   searchEpisode() {
     this.errorMessage = '';
     this.searchedEpisode = null;
+    this.characters = []; 
 
     this.rickAndMortyService.getEpisodeById(this.searchId).subscribe(
       (response) => {
         if (response) {
           this.searchedEpisode = response; 
+          this.loadCharacters(); 
         } else {
           this.errorMessage = 'Episode Not Found';
         }
@@ -42,8 +46,31 @@ export class SearchEpisodeComponent {
     );
   }   
 
-  closePopup(): void {
+  loadCharacters() {
+    if (this.searchedEpisode && this.searchedEpisode.characters) {
+      this.searchedEpisode.characters.forEach((characterUrl: string) => {
+        this.rickAndMortyService.getCharacterByUrl(characterUrl).subscribe(
+          (character) => {
+            this.characters.push(character);
+          },
+          (error) => {
+            console.log('Error loading character', error);
+          }
+        );
+      });
+    }
+  }
+
+  showCharacterDetails(character: any): void {
+    this.selectedCharacter = character;
+  }
+
+  closePopupEpisode(): void {
     this.searchedEpisode = null;
-    this.searchId;
+    this.searchId;    
+  }
+
+  closePopupCharacter(): void{    
+    this.selectedCharacter = null;
   }
 }

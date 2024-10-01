@@ -4,13 +4,30 @@
 </div>
 
 <div *ngIf="searchedEpisode">
-
-  <span class="close" (click)="closePopup()">X</span>
+  <span class="close-episode" (click)="closePopupEpisode()">X</span>
   <h2>{{ searchedEpisode.name }}</h2>
   <p>Air Date: {{ searchedEpisode.air_date }}</p>
   <p>Episode: {{ searchedEpisode.episode }}</p>
-  <p>Characters: {{ searchedEpisode.characters }}</p>
+
+  <h3>Characters:</h3>
+  <div class="character-grid">
+    <div class="character-card" *ngFor="let character of characters">
+      <strong (click)="showCharacterDetails(character)">{{ character.name }}</strong>
+      <img (click)="showCharacterDetails(character)" [src]="character.image" alt="{{ character.name }}" width="100" />
+    </div>
+  </div>
 </div>
+
+<div *ngIf="selectedCharacter" class="popup">
+  <div class="popup-content">
+    <span class="close-character" (click)="closePopupCharacter()">X</span>
+    <h2>{{ selectedCharacter.name }}</h2>
+    <img [src]="selectedCharacter.image" alt="{{ selectedCharacter.name }}" />
+    <p><strong>Status:</strong> {{ selectedCharacter.status }}</p>
+    <p><strong>Specie:</strong> {{ selectedCharacter.species }}</p>
+    <p><strong>Type:</strong> {{ selectedCharacter.gender }}</p>
+    <p><strong>Origin:</strong> {{ selectedCharacter.origin.name }}</p>
+  </div>
 
 <div *ngIf="errorMessage" style="color: red;">
   {{ errorMessage }}

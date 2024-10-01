@@ -67,10 +67,78 @@ div {
     border: 1px solid #f5c6cb;
   }
   
-  .close {
+  .close-episode {
     top: 10px;
     right: 20px;
     cursor: pointer;
     font-size: 20px;
   }
+
+  .character-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 20px; /* Espacio entre los elementos */
+    margin-top: 20px;
+  }
+  
+  .character-card {
+    text-align: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .character-card strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .character-card img {
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    span.close{
+      color: azure;
+    }
+  }
+  
+  .popup-content img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .close-character {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #ccc;
+  }
+  
   
